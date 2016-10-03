@@ -12,7 +12,13 @@ object Main {
      * The following came from https://spark.apache.org/docs/1.6.2/mllib-decision-tree.html
      */
 
-    // Load and parse the data file.
+    /* 
+     * Load and parse the data file. See ./data/mllib/sample_libsvm_data.txt for the data
+     * See https://spark.apache.org/docs/latest/mllib-data-types.html for info on formats.
+     * The big thing seems to be to put the class as the first value in each row.  This 
+     * particular format seems to be for sparse data, where it makes more sense to only list 
+     * nonzero values.
+     */
     val data = MLUtils.loadLibSVMFile(sc, "data/mllib/sample_libsvm_data.txt")
     // Split the data into training and test sets (30% held out for testing)
     val splits = data.randomSplit(Array(0.7, 0.3))
